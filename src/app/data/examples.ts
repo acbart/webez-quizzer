@@ -1,7 +1,7 @@
-import { MultipleChoiceQuestion, Quiz } from "./quizzes";
+/*import { MultipleChoiceQuestion, Question } from "./quizzes";
 
-export const EXAMPLES: Quiz[] = [
-    new Quiz("Spanish Basics", [
+export const EXAMPLES: Question[][] = [
+    [
         new MultipleChoiceQuestion(
             "1",
             "HelloWorld",
@@ -9,5 +9,6 @@ export const EXAMPLES: Quiz[] = [
             ["Hola", "Adios", "Buenos Dias", "Gracias"],
             "Hola",
         ),
-    ]),
+    ],
 ];
+*/

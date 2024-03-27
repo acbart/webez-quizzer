@@ -1,18 +1,28 @@
-import { EzComponent } from "@gsilber/webez";
+import { BindInnerHTML, EzComponent } from "@gsilber/webez";
 import html from "./viewQuiz.component.html";
 import css from "./viewQuiz.component.css";
-import { Question, Quiz } from "../data/quizzes";
 import { ViewQuestionComponent } from "../viewQuestion/viewQuestion.component";
 
 export class ViewQuizComponent extends EzComponent {
+    @BindInnerHTML("name")
+    private name: string = "Untitled Quiz";
     private viewQuestions: ViewQuestionComponent[] = [];
-    constructor(private quiz: Quiz = new Quiz("Untitled Quiz", [])) {
-        super(html, css);
 
-        this.quiz.getQuestions().forEach((question: Question) => {
-            const viewQuestion = new ViewQuestionComponent(question);
-            this.addComponent(viewQuestion);
-            this.viewQuestions.push(viewQuestion);
-        });
+    constructor() {
+        super(html, css);
+    }
+
+    addQuestion(title: string, body: string, id: string): void {
+        const viewQuestion: ViewQuestionComponent = new ViewQuestionComponent(
+            title,
+            body,
+            id,
+        );
+        this.viewQuestions.push(viewQuestion);
+        this.addComponent(viewQuestion);
+    }
+
+    setName(name: string): void {
+        this.name = name;
     }
 }
