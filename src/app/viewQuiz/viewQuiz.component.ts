@@ -44,4 +44,7 @@ export class ViewQuizComponent extends EzComponent {
     setName(name: string): void {
         this.name = name;
     }
+    getName(): string {
+        return this.name;
+    }
 }

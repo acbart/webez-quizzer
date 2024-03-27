@@ -1,4 +1,11 @@
-import { BindStyle, BindValue, EzComponent, Input } from "@gsilber/webez";
+import {
+    BindStyle,
+    BindValue,
+    Click,
+    EventSubject,
+    EzComponent,
+    Input,
+} from "@gsilber/webez";
 import html from "./editQuiz.component.html";
 import css from "./editQuiz.component.css";
 
@@ -8,6 +15,9 @@ export class EditQuizComponent extends EzComponent {
 
     @BindStyle("save", "display")
     private isDirty = "none";
+
+    saving: EventSubject<void> = new EventSubject();
+
     constructor() {
         super(html, css);
     }
@@ -15,5 +25,18 @@ export class EditQuizComponent extends EzComponent {
     @Input("title")
     updateDirtyStatus(): void {
         this.isDirty = "block";
+    }
+
+    @Click("save")
+    saveChanges(): void {
+        this.isDirty = "none";
+        this.saving.next();
+    }
+
+    getTitle(): string {
+        return this.title;
+    }
+    setTitle(title: string): void {
+        this.title = title;
     }
 }

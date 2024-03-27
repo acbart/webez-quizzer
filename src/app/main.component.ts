@@ -28,6 +28,8 @@ export class MainComponent extends EzComponent {
         this.editQuiz = new EditQuizComponent();
         this.addComponent(this.editQuiz, "editor");
 
+        this.listenForSave();
+
         this.createSpanishQuiz();
     }
 
@@ -38,10 +40,21 @@ export class MainComponent extends EzComponent {
             this.isTaking = false;
             this.editorVisible = "block";
             this.viewVisible = "none";
+            this.editQuiz.setTitle(this.viewQuiz.getName());
         } else {
             this.editorVisible = "none";
             this.viewVisible = "block";
         }
+    }
+
+    private listenForSave(): void {
+        this.editQuiz.saving.subscribe(() => {
+            this.viewQuiz.setName(this.editQuiz.getTitle());
+        });
+    }
+
+    onSave(): void {
+        this.viewQuiz.setName(this.editQuiz.getTitle());
     }
 
     createSpanishQuiz(): void {
