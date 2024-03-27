@@ -2,6 +2,7 @@ import { BindInnerHTML, EzComponent } from "@gsilber/webez";
 import html from "./viewQuiz.component.html";
 import css from "./viewQuiz.component.css";
 import { ViewQuestionComponent } from "../viewQuestion/viewQuestion.component";
+import { ViewMultipleChoiceComponent } from "../components/viewMultipleChoice/viewMultipleChoice.component";
 
 export class ViewQuizComponent extends EzComponent {
     @BindInnerHTML("name")
@@ -17,6 +18,24 @@ export class ViewQuizComponent extends EzComponent {
             title,
             body,
             id,
+        );
+        this.viewQuestions.push(viewQuestion);
+        this.addComponent(viewQuestion);
+    }
+
+    addMultipleChoiceQuestion(
+        title: string,
+        body: string,
+        id: string,
+        options: string[],
+        correctOption: string,
+    ): void {
+        const viewQuestion = new ViewMultipleChoiceComponent(
+            title,
+            body,
+            id,
+            options,
+            correctOption,
         );
         this.viewQuestions.push(viewQuestion);
         this.addComponent(viewQuestion);

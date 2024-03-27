@@ -14,8 +14,10 @@ export class ViewQuestionComponent extends EzComponent {
         title: string = "Untitled Question",
         body: string = "This is a question.",
         id: string = "",
+        altHtml?: string,
+        altCss?: string,
     ) {
-        super(html, css);
+        super(altHtml || html, altCss || css);
         this.title = title;
         this.body = body;
         this.id = id;
